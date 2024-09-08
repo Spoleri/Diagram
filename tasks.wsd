@@ -1,0 +1,29 @@
+@startuml 
+    class User {
+        + name: string
+        + password: password
+        + email: email
+    }
+
+    class Task {
+        + description: string
+        + date_of_create: date
+    }
+    
+    class Comment {
+        + description: string
+    }
+
+    class Project {
+        + name: string
+        + date_of_create: date
+    }
+
+    
+    Comment --> User
+    Comment --> Task
+    Comment --> Comment
+    Task --> Project
+    Task --> User
+    User --> Project
+@enduml
