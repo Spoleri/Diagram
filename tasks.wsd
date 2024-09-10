@@ -1,13 +1,18 @@
 @startuml 
     class User {
-        + name: string
+        + login: string
         + password: password
+        + name: string
+        + surname: string
+        + patronymic: string
         + email: email
+        + admin: boolean
     }
 
     class Task {
+        + name: string
         + description: string
-        + date_of_create: date
+        + status: string
     }
     
     class Comment {
@@ -16,14 +21,20 @@
 
     class Project {
         + name: string
-        + date_of_create: date
+        + description: string
+    }
+
+    class Permision {
+        + right_to_create: string
+        + right_to_delete: string
     }
 
     
-    Comment --> User
-    Comment --> Task
-    Comment --> Comment
-    Task --> Project
-    Task --> User
-    User --> Project
+    Comment *--> User : Один ко многим
+    Comment *--> Task : Один ко многим
+    Comment *--> Comment : Один ко многим
+    Task *---> Project : Один ко многим
+    Task *--> User : Один ко многим
+    Permision *---> Project: Один ко многим
+    Permision *--> User: Один к одному
 @enduml
