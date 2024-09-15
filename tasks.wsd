@@ -1,40 +1,42 @@
-@startuml 
+@startuml diagram
     class User {
         + login: string
-        + password: password
+        + password: digest
         + name: string
         + surname: string
         + patronymic: string
-        + email: email
+        + email: string
         + admin: boolean
     }
 
     class Task {
         + name: string
-        + description: string
+        + description: text
         + status: string
     }
     
     class Comment {
-        + description: string
+        + description: text
     }
 
     class Project {
         + name: string
-        + description: string
+        + description: text
     }
 
-    class Permision {
-        + right_to_create: string
-        + right_to_delete: string
+    class Permission {
+        + create: boolean
+        + delete: boolean
     }
 
     
-    Comment *--> User : Один ко многим
-    Comment *--> Task : Один ко многим
-    Comment *--> Comment : Один ко многим
-    Task *---> Project : Один ко многим
-    Task *--> User : Один ко многим
-    Permision *---> Project: Один ко многим
-    Permision *--> User: Один к одному
+    User "о" o--* "м" Comment
+    User "o" o---* "м  " Task
+    Task "м" *--o "o " Project
+    Project "о" o--* "м  " Permission
+    Permission "м" *--o "о" User
+    Comment "о" o--* "м" Comment
+    Comment "м" *--o "о" Task
+
+
 @enduml
