@@ -10,12 +10,18 @@
     }
 
     class Task {
+        # project_id: int
+        # user_id: int
+        # owner_id: int
         + name: string
         + description: text
         + status: string
     }
     
     class Comment {
+        # user_id: int
+        # comment_id: int
+        # task_id: int
         + description: text
     }
 
@@ -25,18 +31,18 @@
     }
 
     class Permission {
-        + create: boolean
-        + delete: boolean
+        # user_id: int
+        # project_id: int
+        + edit: boolean
+        + read: boolean
     }
-
     
-    User "о" o--* "м" Comment
-    User "o" o---* "м  " Task
-    Task "м" *--o "o " Project
+    User "о" o-right-* "м" Comment
+    User "o" o-down-* "м  " Task
+    User "о" o-down-* "м  " Task
+    Task "м" *-o "o " Project
     Project "о" o--* "м  " Permission
     Permission "м" *--o "о" User
     Comment "о" o--* "м" Comment
     Comment "м" *--o "о" Task
-
-
 @enduml
