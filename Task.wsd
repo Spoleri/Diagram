@@ -23,25 +23,9 @@
         + description: string
     }
 
-    class Calendar {
-        # id: int
-        + name: string
-        + description: string
-    }
-
     class Groups {
         # id: int
         + name: string
-    }
-
-    class Permission {
-        # id: int
-        + name: string
-        + access: boolean
-    }
-    
-    hexagon открытие {
-
     }
 
     hexagon привязывание {
@@ -57,36 +41,22 @@
 
     }
 
-    hexagon взаимодействие {
-
-    }
-
     hexagon оставление_1 {
 
     }
 
-    hexagon администрирование {
+    hexagon Role {
 
     }
 
-    hexagon привязывание_2 {
-
-    }
-
-    User "о" -> открытие
-    открытие -> "o" Calendar
-    Calendar "o" -> привязывание
-    привязывание -> "m" Task
-    User "o" --> оставление
+    User "о" -down-> привязывание
+    привязывание -up-> "m" Task
+    User "o" -up-> оставление
     оставление -> "m" Comment
     Comment "m" --> привязывание_1
     привязывание_1 -> "o" Task
-    User "m" ---> взаимодействие
-    взаимодействие -> "o" Groups
     Comment "o" -> оставление_1
     оставление_1 -> "m" Comment
-    User "o" ----> администрирование
-    администрирование -> "m" Permission
-    Permission "m" -> привязывание_2
-    привязывание_2 -> "o" Groups
+    User "m" ----> Role
+    Role --> "m" Groups
 @enduml

@@ -1,0 +1,54 @@
+@startuml Concept
+    class User {
+        # id: int
+        --
+        + login: string
+        + password: password
+        + name: string
+        + surname: string
+        + patronymic: string
+        + email: string
+        + admin: boolean
+    }
+
+    class Task {
+        # id: int
+        # user_id: int
+        --
+        + name: string
+        + description: string
+        + status: int
+        + time: time
+    }
+
+    class Comment {
+        # id: int
+        # user_id: int
+        ..
+        # task_id: int
+        # comment_id: int
+        --
+        + description: string
+    }
+
+    class Groups {
+        # id: int
+        --
+        + name: string
+    }
+
+    class Role {
+        # id: int
+        # user_id: int
+        # groups_id: int
+        --
+        + permission: int
+    }
+
+    User o--* Task
+    User o-down-* Comment
+    User o-* Role
+    Role *-o Groups
+    Task o-right-* Comment
+    Comment o-* Comment 
+@enduml
