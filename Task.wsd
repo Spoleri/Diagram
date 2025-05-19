@@ -28,35 +28,35 @@
         + name: string
     }
 
-    hexagon привязывание {
+    class Role {
+        # id: int
+        + permission: int
+    }
+
+    hexagon привязать {
 
     }
 
-    hexagon оставление {
+    hexagon оставить {
 
     }
 
-
-    hexagon привязывание_1 {
-
-    }
-
-    hexagon оставление_1 {
+    hexagon привязать_1 {
 
     }
 
-    hexagon Role {
+    hexagon оставить_1 {
 
     }
 
-    User "о" -down-> привязывание
-    привязывание -up-> "m" Task
-    User "o" -up-> оставление
-    оставление -> "m" Comment
-    Comment "m" --> привязывание_1
-    привязывание_1 -> "o" Task
-    Comment "o" -> оставление_1
-    оставление_1 -> "m" Comment
-    User "m" ----> Role
-    Role --> "m" Groups
+    User "о" -down-> привязать
+    привязать -up-> "m" Task
+    User "o" -up-> оставить
+    оставить -> "m" Comment
+    Comment "m" --> привязать_1
+    привязать_1 -> "o" Task
+    Comment "o" -> оставить_1
+    оставить_1 -> "m" Comment
+    User "m" <----> Role
+    Role <--> "m" Groups
 @enduml
