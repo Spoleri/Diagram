@@ -1,0 +1,55 @@
+@startuml Negotiation
+    class Negotiation {
+        # id: int
+        # HR_id: int
+        # student_id: int
+        # company_id: int 
+        # job_id: int
+        --
+        + stage: int
+        + status: int
+        + first_name: string
+        + middle_name: string
+        + last_name: string
+        + email: string
+        + phone_number: string
+        + social_media: string
+        + about_you: text
+        + add_info: text
+        + meet_time: time
+    }
+
+    class HR_Comment {
+        # id: int
+        # Negotiation_id: int
+        # HR_id: int
+        # student_id: int
+        --
+        + body: text
+        + file: file
+    }
+    
+    class Company {
+        # id: int
+    }
+
+    class Student {
+        # id: int
+    }
+
+    class job {
+        # id: int
+    }
+
+    class User {
+        # id: int
+    }
+
+    Negotiation "m" -left-> Student
+    Negotiation "m" -right-> Company
+    Negotiation "m" -down-> job
+    Negotiation "m" -up-> User
+    Negotiation --> "m" HR_Comment
+    HR_Comment "m" --> User
+    HR_Comment "m" --> Student
+@enduml
